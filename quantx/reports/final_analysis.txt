@@ -1,0 +1,12 @@
+Total PNL = -83102.625
+Token = 35001
+Total Orders = 3130.0
+Total Trades = 3130.0
+Volume Traded = 234750.0
+Winning Trades = 758.0
+Win Loss Ratio = 0.31956155143338955
+Win Loss Points = 0.915965930873544
+PNL Turnover Ratio (bps) = -13.723475368034675
+Sharpe Ratio = -3.40507145964876
+Drawdown = -0.0
+################################################################################

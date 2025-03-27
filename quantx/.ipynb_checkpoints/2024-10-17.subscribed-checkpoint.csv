@@ -1,0 +1,3 @@
+,token,symbol,name,expiry,strike,lotsize,instrumenttype,exch_seg,tick_size,exchange_type
+209,14366,IDEA-EQ,IDEA,,-1.0,1,EQSTK,NSE,1.0,1
+4217,11915,YESBANK-EQ,YESBANK,,-1.0,1,EQSTK,NSE,1.0,1

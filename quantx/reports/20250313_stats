@@ -1,0 +1,17 @@
+Total PNL = 1237.875
+Total Orders = 106
+Total Trades (buys + sells) = 106
+Total Volume Traded = 7950
+Winning Trades = 27
+Win Ratio = 0.34177215189873417
+Win Loss Points = 1.037936860009424
+PNL Turnover Ratio (bps) = 7.3084638919596046
+Sharpe Annually = 0.26389838597050896
+Drawdown = -2.4761800699300704
+Config:
+START_DATE = 20250313
+END_DATE = 20250313
+TIMER_TIME_SECONDS = 60
+CANDLE_TIME_FRAME = 5
+NIFTY_TOKEN = 35001
+###############################################################################

@@ -1,0 +1,115 @@
+2025-03-27 14:50:00,322 INFO, inst,timestamp,timestamp, position,pnl
+2025-03-27 14:50:00,845 INFO, Long condition met 2025-02-21 09:27:55
+2025-03-27 14:50:00,846 INFO, Entered 48251, 23050.0, CALL at 410.7 SL: 369.63 Target: 451.77
+2025-03-27 14:50:01,030 INFO, Long condition met 2025-02-21 09:34:51
+2025-03-27 14:50:01,030 INFO, Entered 48251, 23050.0, CALL at 406.8 SL: 366.12 Target: 447.48
+2025-03-27 14:50:01,248 INFO, Short condition met 2025-02-21 09:43:41
+2025-03-27 14:50:01,249 INFO, Entered 48346, 23050.0, PUT at 402.4 SL: 362.15999999999997 Target: 442.64
+2025-03-27 14:50:01,700 INFO, Long condition met 2025-02-21 09:59:40
+2025-03-27 14:50:01,700 INFO, Entered 48251, 23050.0, CALL at 409.1 SL: 368.19 Target: 450.01
+2025-03-27 14:50:02,079 INFO, Long condition met 2025-02-21 10:21:21
+2025-03-27 14:50:02,080 INFO, Entered 48251, 23050.0, CALL at 415.85 SL: 374.265 Target: 457.44
+2025-03-27 14:50:02,150 INFO, Short condition met 2025-02-21 10:24:06
+2025-03-27 14:50:02,151 INFO, Entered 48346, 23050.0, PUT at 391.7 SL: 352.53 Target: 430.87
+2025-03-27 14:50:02,278 INFO, Long condition met 2025-02-21 10:31:22
+2025-03-27 14:50:02,279 INFO, Entered 48251, 23050.0, CALL at 410.65 SL: 369.585 Target: 451.72
+2025-03-27 14:50:02,545 INFO, Short condition met 2025-02-21 10:43:46
+2025-03-27 14:50:02,546 INFO, Entered 48346, 23050.0, PUT at 389.75 SL: 350.775 Target: 428.72
+2025-03-27 14:50:02,639 INFO, Short condition met 2025-02-21 10:51:10
+2025-03-27 14:50:02,640 INFO, Entered 48346, 23050.0, PUT at 392.55 SL: 353.295 Target: 431.8
+2025-03-27 14:50:02,704 INFO, Long condition met 2025-02-21 10:56:19
+2025-03-27 14:50:02,705 INFO, Entered 48251, 23050.0, CALL at 414.85 SL: 373.365 Target: 456.34
+2025-03-27 14:50:02,915 INFO, Short condition met 2025-02-21 11:11:19
+2025-03-27 14:50:02,915 INFO, Entered 48348, 23100.0, PUT at 406.8 SL: 366.12 Target: 447.48
+2025-03-27 14:50:02,949 INFO, Short condition met 2025-02-21 11:13:15
+2025-03-27 14:50:02,950 INFO, Entered 48348, 23100.0, PUT at 407.7 SL: 366.93 Target: 448.47
+2025-03-27 14:50:02,996 INFO, Short condition met 2025-02-21 11:15:33
+2025-03-27 14:50:02,997 INFO, Entered 48348, 23100.0, PUT at 407.6 SL: 366.84000000000003 Target: 448.36
+2025-03-27 14:50:03,011 INFO, Short condition met 2025-02-21 11:16:19
+2025-03-27 14:50:03,012 INFO, Entered 48348, 23100.0, PUT at 407.6 SL: 366.84000000000003 Target: 448.36
+2025-03-27 14:50:03,096 INFO, Short condition met 2025-02-21 11:21:10
+2025-03-27 14:50:03,097 INFO, Entered 48348, 23100.0, PUT at 406.4 SL: 365.76 Target: 447.04
+2025-03-27 14:50:03,131 INFO, Short condition met 2025-02-21 11:23:02
+2025-03-27 14:50:03,132 INFO, Entered 48348, 23100.0, PUT at 407.9 SL: 367.10999999999996 Target: 448.69
+2025-03-27 14:50:03,309 INFO, Short condition met 2025-02-21 11:35:30
+2025-03-27 14:50:03,310 INFO, Entered 48346, 23050.0, PUT at 383.0 SL: 344.7 Target: 421.3
+2025-03-27 14:50:03,326 INFO, Short condition met 2025-02-21 11:36:30
+2025-03-27 14:50:03,326 INFO, Entered 48346, 23050.0, PUT at 383.0 SL: 344.7 Target: 421.3
+2025-03-27 14:50:03,422 INFO, Short condition met 2025-02-21 11:44:25
+2025-03-27 14:50:03,423 INFO, Entered 48348, 23100.0, PUT at 408.15 SL: 367.335 Target: 448.96
+2025-03-27 14:50:03,652 INFO, Short condition met 2025-02-21 11:59:16
+2025-03-27 14:50:03,652 INFO, Entered 48346, 23050.0, PUT at 389.2 SL: 350.28 Target: 428.12
+2025-03-27 14:50:04,069 INFO, Short condition met 2025-02-21 12:27:14
+2025-03-27 14:50:04,069 INFO, Entered 48346, 23050.0, PUT at 383.05 SL: 344.745 Target: 421.36
+2025-03-27 14:50:04,217 INFO, Short condition met 2025-02-21 12:35:03
+2025-03-27 14:50:04,217 INFO, Entered 48346, 23050.0, PUT at 383.9 SL: 345.51 Target: 422.29
+2025-03-27 14:50:04,481 INFO, Short condition met 2025-02-21 12:48:56
+2025-03-27 14:50:04,482 INFO, Entered 48346, 23050.0, PUT at 379.55 SL: 341.595 Target: 417.5
+2025-03-27 14:50:04,549 INFO, Short condition met 2025-02-21 12:52:51
+2025-03-27 14:50:04,550 INFO, Entered 48348, 23100.0, PUT at 404.95 SL: 364.455 Target: 445.44
+2025-03-27 14:50:04,683 INFO, Short condition met 2025-02-21 13:01:40
+2025-03-27 14:50:04,684 INFO, Entered 48346, 23050.0, PUT at 388.15 SL: 349.335 Target: 426.96
+2025-03-27 14:50:04,735 INFO, Long condition met 2025-02-21 13:03:41
+2025-03-27 14:50:04,736 INFO, Entered 48251, 23050.0, CALL at 409.25 SL: 368.325 Target: 450.18
+2025-03-27 14:50:04,755 INFO, Short condition met 2025-02-21 13:04:40
+2025-03-27 14:50:04,756 INFO, Entered 48346, 23050.0, PUT at 390.4 SL: 351.35999999999996 Target: 429.44
+2025-03-27 14:50:04,858 INFO, Short condition met 2025-02-21 13:10:31
+2025-03-27 14:50:04,858 INFO, Entered 48346, 23050.0, PUT at 390.4 SL: 351.35999999999996 Target: 429.44
+2025-03-27 14:50:05,066 INFO, Short condition met 2025-02-21 13:23:25
+2025-03-27 14:50:05,067 INFO, Entered 48346, 23050.0, PUT at 386.0 SL: 347.4 Target: 424.6
+2025-03-27 14:50:05,525 INFO, Long condition met 2025-02-21 13:49:35
+2025-03-27 14:50:05,526 INFO, Entered 48347, 23100.0, CALL at 388.1 SL: 349.29 Target: 426.91
+2025-03-27 14:50:05,601 INFO, Long condition met 2025-02-21 13:52:30
+2025-03-27 14:50:05,602 INFO, Entered 48347, 23100.0, CALL at 390.0 SL: 351.0 Target: 429.0
+2025-03-27 14:50:05,625 INFO, Short condition met 2025-02-21 13:53:34
+2025-03-27 14:50:05,625 INFO, Entered 48348, 23100.0, PUT at 392.4 SL: 353.15999999999997 Target: 431.64
+2025-03-27 14:50:05,674 INFO, Short condition met 2025-02-21 13:55:32
+2025-03-27 14:50:05,678 INFO, Entered 48348, 23100.0, PUT at 393.0 SL: 353.7 Target: 432.3
+2025-03-27 14:50:06,068 INFO, Short condition met 2025-02-21 14:10:30
+2025-03-27 14:50:06,068 INFO, Entered 48346, 23050.0, PUT at 376.8 SL: 339.12 Target: 414.48
+2025-03-27 14:50:06,211 INFO, Short condition met 2025-02-21 14:18:32
+2025-03-27 14:50:06,212 INFO, Entered 48348, 23100.0, PUT at 401.15 SL: 361.03499999999997 Target: 441.26
+2025-03-27 14:50:06,940 INFO, Short condition met 2025-02-21 14:55:06
+2025-03-27 14:50:06,940 INFO, Entered 48348, 23100.0, PUT at 392.75 SL: 353.475 Target: 432.02
+2025-03-27 14:50:07,207 INFO, Long condition met 2025-02-21 15:06:07
+2025-03-27 14:50:07,208 INFO, Entered 48347, 23100.0, CALL at 381.0 SL: 342.9 Target: 419.1
+2025-03-27 14:50:07,393 INFO, Long condition met 2025-02-21 15:13:09
+2025-03-27 14:50:07,393 INFO, Entered 48347, 23100.0, CALL at 379.9 SL: 341.90999999999997 Target: 417.89
+2025-03-27 14:50:07,440 INFO, sqauring off placing sell order in 48251 , 23050.0, CALL at 406.9
+2025-03-27 14:50:07,440 INFO, sqauring off placing sell order in 48251 , 23050.0, CALL at 406.9
+2025-03-27 14:50:07,440 INFO, sqauring off placing sell order in 48346 , 23050.0, PUT at 368.1
+2025-03-27 14:50:07,440 INFO, sqauring off placing sell order in 48251 , 23050.0, CALL at 406.9
+2025-03-27 14:50:07,440 INFO, sqauring off placing sell order in 48251 , 23050.0, CALL at 406.9
+2025-03-27 14:50:07,440 INFO, sqauring off placing sell order in 48346 , 23050.0, PUT at 368.1
+2025-03-27 14:50:07,440 INFO, sqauring off placing sell order in 48251 , 23050.0, CALL at 406.9
+2025-03-27 14:50:07,441 INFO, sqauring off placing sell order in 48346 , 23050.0, PUT at 368.1
+2025-03-27 14:50:07,441 INFO, sqauring off placing sell order in 48346 , 23050.0, PUT at 368.1
+2025-03-27 14:50:07,441 INFO, sqauring off placing sell order in 48251 , 23050.0, CALL at 406.9
+2025-03-27 14:50:07,441 INFO, sqauring off placing sell order in 48348 , 23100.0, PUT at 389.0
+2025-03-27 14:50:07,441 INFO, sqauring off placing sell order in 48348 , 23100.0, PUT at 389.0
+2025-03-27 14:50:07,441 INFO, sqauring off placing sell order in 48348 , 23100.0, PUT at 389.0
+2025-03-27 14:50:07,441 INFO, sqauring off placing sell order in 48348 , 23100.0, PUT at 389.0
+2025-03-27 14:50:07,441 INFO, sqauring off placing sell order in 48348 , 23100.0, PUT at 389.0
+2025-03-27 14:50:07,441 INFO, sqauring off placing sell order in 48348 , 23100.0, PUT at 389.0
+2025-03-27 14:50:07,441 INFO, sqauring off placing sell order in 48346 , 23050.0, PUT at 368.1
+2025-03-27 14:50:07,441 INFO, sqauring off placing sell order in 48346 , 23050.0, PUT at 368.1
+2025-03-27 14:50:07,441 INFO, sqauring off placing sell order in 48348 , 23100.0, PUT at 389.0
+2025-03-27 14:50:07,441 INFO, sqauring off placing sell order in 48346 , 23050.0, PUT at 368.1
+2025-03-27 14:50:07,442 INFO, sqauring off placing sell order in 48346 , 23050.0, PUT at 368.1
+2025-03-27 14:50:07,442 INFO, sqauring off placing sell order in 48346 , 23050.0, PUT at 368.1
+2025-03-27 14:50:07,442 INFO, sqauring off placing sell order in 48346 , 23050.0, PUT at 368.1
+2025-03-27 14:50:07,442 INFO, sqauring off placing sell order in 48348 , 23100.0, PUT at 389.0
+2025-03-27 14:50:07,442 INFO, sqauring off placing sell order in 48346 , 23050.0, PUT at 368.1
+2025-03-27 14:50:07,442 INFO, sqauring off placing sell order in 48251 , 23050.0, CALL at 406.9
+2025-03-27 14:50:07,442 INFO, sqauring off placing sell order in 48346 , 23050.0, PUT at 368.1
+2025-03-27 14:50:07,442 INFO, sqauring off placing sell order in 48346 , 23050.0, PUT at 368.1
+2025-03-27 14:50:07,442 INFO, sqauring off placing sell order in 48346 , 23050.0, PUT at 368.1
+2025-03-27 14:50:07,442 INFO, sqauring off placing sell order in 48347 , 23100.0, CALL at 381.0
+2025-03-27 14:50:07,442 INFO, sqauring off placing sell order in 48347 , 23100.0, CALL at 381.0
+2025-03-27 14:50:07,442 INFO, sqauring off placing sell order in 48348 , 23100.0, PUT at 389.0
+2025-03-27 14:50:07,443 INFO, sqauring off placing sell order in 48348 , 23100.0, PUT at 389.0
+2025-03-27 14:50:07,443 INFO, sqauring off placing sell order in 48346 , 23050.0, PUT at 368.1
+2025-03-27 14:50:07,443 INFO, sqauring off placing sell order in 48348 , 23100.0, PUT at 389.0
+2025-03-27 14:50:07,443 INFO, sqauring off placing sell order in 48348 , 23100.0, PUT at 389.0
+2025-03-27 14:50:07,443 INFO, sqauring off placing sell order in 48347 , 23100.0, CALL at 381.0
+2025-03-27 14:50:07,443 INFO, sqauring off placing sell order in 48347 , 23100.0, CALL at 381.0
