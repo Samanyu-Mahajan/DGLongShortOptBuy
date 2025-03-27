@@ -22,9 +22,6 @@ import pdb
 # close < SMA target hit
 # close > SL_price SL hit
 
-class TRANSACTION:
-    BUY = "BUY"
-    SELL = "SELL"
 
 class DGLongShortRev(Strategy):
     '''
@@ -69,10 +66,10 @@ class DGLongShortRev(Strategy):
         self.packet_data = pd.DataFrame(columns=['datetime', 'open', 'high', 'low', 'close'])
         self.packet_cnt = 0
         self.last_update_dt = None
-        self.upd = False
         self.state = self.STATE_INITIAL
         self.update_time_gap = dt.timedelta(seconds=params['update_time_gap_seconds'])
         self.tf = dt.timedelta(seconds=params['candle_tf'])
+        self.date = None
 
 
 
@@ -88,7 +85,8 @@ class DGLongShortRev(Strategy):
         # self.qty = int(self.params['qty'])
         # self.max_qty = int(self.params['max_qty'])
         # self.sl_perc = float(self.params['sl_percent'])/100
-        
+
+
 
 
         # indicators
@@ -148,11 +146,13 @@ class DGLongShortRev(Strategy):
         return True
 
     def update(self, t):
+        # print(t)
         updated = self.update_indicators(t)
+        # print(updated)
         if(not updated): return False
         if(self.position_count < self.max_qty and self._long_condition()):
             self.logger.info("Long condition met")
-            entry_price = self.place_order(TRANSACTION.BUY)
+            entry_price = self.place_order(Order.BUY)
             self.position_count += 1
             if(self.position_count > 0):
                 # it's in long
@@ -161,7 +161,7 @@ class DGLongShortRev(Strategy):
                
         elif(self.position_count > -self.max_qty and self._short_condition()):
             self.logger.info("Short condition met")
-            entry_price = self.place_order(TRANSACTION.SELL)
+            entry_price = self.place_order(Order.SELL)
             self.position_count -= 1
             if(self.position_count < 0):
                 # it's in short
@@ -184,7 +184,7 @@ class DGLongShortRev(Strategy):
                 self.logger.info("SL hit on LONG side")
                 _exit = True
             if(_exit):
-                self.place_order(TRANSACTION.SELL, self.position_count)
+                self.place_order(Order.SELL, self.position_count)
                 self.position_count = 0
         elif(self.position_count < 0):
             _exit = False
@@ -195,31 +195,33 @@ class DGLongShortRev(Strategy):
                 self.logger.info("SL hit on SHORT side")
                 _exit = True
             if(_exit):
-                self.place_order(TRANSACTION.BUY, -self.position_count)
+                self.place_order(Order.BUY, -self.position_count)
                 self.position_count = 0
         return True
 
     # def _long_condition(self):
     def _short_condition(self):
         return (
-            (self.candle['high'] > self.BBANDS.upperband) &
-            (self.rsi_rc > 5) &
-            (self.plus_di_rc > 5) &
-            (self.band_diff > 0.4)
+            (self.candle['high'] > self.BBANDS.upperband) 
+            # &
+            # (self.rsi_rc > 5) &
+            # (self.plus_di_rc > 5) &
+            # (self.band_diff > 0.4)
         )
 
     # def _short_condition(self):
     def _long_condition(self):
         return (
-            (self.candle['low'] < self.BBANDS.lowerband) &
-            (self.rsi_rc <= -5) &
-            (self.minus_di_rc < -5) &
-            (self.band_diff > 0.4)
+            (self.candle['low'] < self.BBANDS.lowerband) 
+            # & 
+            # (self.rsi_rc <= -5) &
+            # (self.minus_di_rc < -5) &
+            # (self.band_diff > 0.4)
         )
-    # def place_order(self, inst, price, side, quantity, order_type=Order.AGGRESSIVE, signal=""):
+    # def place_order(self, inst, price, side, quantity, lot, order_type=Order.AGGRESSIVE, signal=""):
 
     def place_order(self, side, qty=1):
-        order_id = self.exchange.place_order(self.instrument, self.candle['close'], side, qty*self.qty)
+        order_id = self.exchange.place_order(self.instrument, self.candle['close'], side, qty*self.qty, self.qty)
         if(order_id is None):
             self.logger.error(f"Error in placing order in {side}")
             raise Exception("OrderPlacementException")
@@ -232,9 +234,9 @@ class DGLongShortRev(Strategy):
     def squareoff(self, t):
         self.logger.debug("squaring off...")
         if(self.position_count > 0):
-            self.place_order(TRANSACTION.SELL, self.position_count)
+            self.place_order(Order.SELL, self.position_count)
         elif(self.position_count < 0):
-            self.place_order(TRANSACTION.BUY, -self.position_count)
+            self.place_order(Order.BUY, -self.position_count)
         self.state = self.STATE_SQUAREDOFF
         return True
     
@@ -251,36 +253,24 @@ class DGLongShortRev(Strategy):
         update_sched = get_schedule((start_dt).strftime('%H:%M'),(end_dt-utils.get_timedelta('10s')).strftime('%H:%M'), '1m')
         self.trader.schedule(self.name, update_sched, 'update')
 
+    def setup_for_next_day(self):
+        self.eostrategy_report_build = False
+        self.bool_setup = False
+        self.last_update_dt = None
+        self.state = self.STATE_INITIAL
 
 
     def on_data(self, packet):
         self.packet_cnt += 1
         t = packet.timestamp_seconds
-        time = t.time()  
+        time = t.time()
         date = t.date()
+        if (self.date == None):
+            self.date = date
+        if (date!= self.date):
+            self.date= date
+            self.setup_for_next_day()
 
-        # new_row = {
-        #     'datetime': packet.timestamp_seconds,
-        #     'open': packet.open,
-        #     'high': packet.high,
-        #     'low': packet.low,
-        #     'close': packet.close
-        # }
-        # if self.packet_data.empty:
-        #     self.packet_data = pd.DataFrame([new_row])
-        # else:
-        #     self.packet_data = pd.concat([self.packet_data, pd.DataFrame([new_row])], ignore_index=True)
-
-        
-        # print(len(self.packet_data))
-        # from_dt = dt.datetime.combine(date, dt.time(9, 15, 0))   # 9:15:00
-        # to_dt   = dt.datetime.combine(date, dt.time(9, 15, 10))
-        # tf = '5s'
-        # if (self.packet_cnt>10):
-        #     print("self.packet_data", self.packet_data)
-        #     candles = self.fetch_candle(from_dt, to_dt, tf)
-        #     print(candles)
-        
         if (not self.bool_setup and time >= self.setup_time ):
             # print("setting up once", t)
             self.setup(t)
@@ -288,14 +278,15 @@ class DGLongShortRev(Strategy):
             # print("self.last_updated_time", self.last_update_dt)
         elif self.bool_setup and self.last_update_dt is not None and (t - self.last_update_dt) >= self.update_time_gap and time<self.liquidation_time:
             # print("updating once")
-            self.upd = True
-            # self.update(t)
+            self.update(t)
             # print("self.last_updated_time", self.last_update_dt)
         elif self.state != self.STATE_SQUAREDOFF and time>=self.liquidation_time:
             self.squareoff(t)
         elif time>= self.report_building_time:
             # print(time)
-            self.build_eostrategy_report()
+            # comment this for daily eo strategy reports
+            if (date == (dt.datetime.strptime(self.end_date, "%Y%m%d")+ dt.timedelta(days=1)).date()):
+                self.build_eostrategy_report()
 
 
 

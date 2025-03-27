@@ -1,6 +1,7 @@
 import datetime
 import os.path
 import pandas as pd
+from config import OPTIONS
 
 import pdb
 # if build data is False
@@ -51,9 +52,13 @@ class DataStore:
             for date in get_all_dates:
                 folder_path = f"{self.data_path}/{date}"
                 if os.path.exists(folder_path):
-                    for i in range(1, 13):  # 1 to 12
-                        file_path = f"{folder_path}/nsemd_NSEFO_{i}_{date}.csv"
-                        # file_path = f"{folder_path}/nsemd_NSECM_1_{date}.csv"
+                    file_paths = []
+                    if (OPTIONS):
+                        for i in range(1, 13):  # 1 to 12
+                            file_paths.append(f"{folder_path}/nsemd_NSEFO_{i}_{date}.csv")
+                    else:
+                        file_paths.append(f"{folder_path}/nsemd_NSECM_1_{date}.csv")
+                    for file_path in file_paths:
                         if os.path.isfile(file_path):
                             # print("in file")
                             data = pd.read_csv(f"{file_path}", engine="pyarrow")

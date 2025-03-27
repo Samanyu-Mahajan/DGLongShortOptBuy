@@ -74,6 +74,7 @@ class DGLongShortOptBuy(Strategy):
         self.update_time_gap = dt.timedelta(seconds=params['update_time_gap_seconds'])
         self.tf = dt.timedelta(seconds=params['candle_tf'])
         self.state = self.STATE_INITIAL
+        self.date = None
         # self.lot = 1
 
 
@@ -316,6 +317,11 @@ class DGLongShortOptBuy(Strategy):
         
         self.trader.subscribe(self.name, 'order_update', 'on_order_update')
 
+    def setup_for_next_day(self):
+        self.eostrategy_report_build = False
+        self.bool_setup = False
+        self.last_update_dt = None
+        self.state = self.STATE_INITIAL
 
 
     def on_data(self, packet):
@@ -332,28 +338,11 @@ class DGLongShortOptBuy(Strategy):
         t = packet.timestamp_seconds
         time = t.time()  
         date = t.date()
-
-        # new_row = {
-        #     'datetime': packet.timestamp_seconds,
-        #     'open': packet.open,
-        #     'high': packet.high,
-        #     'low': packet.low,
-        #     'close': packet.close
-        # }
-        # if self.packet_data.empty:
-        #     self.packet_data = pd.DataFrame([new_row])
-        # else:
-        #     self.packet_data = pd.concat([self.packet_data, pd.DataFrame([new_row])], ignore_index=True)
-
-        
-        # print(len(self.packet_data))
-        # from_dt = dt.datetime.combine(date, dt.time(9, 15, 0))   # 9:15:00
-        # to_dt   = dt.datetime.combine(date, dt.time(9, 15, 10))
-        # tf = '5s'
-        # if (self.packet_cnt>10):
-        #     print("self.packet_data", self.packet_data)
-        #     candles = self.fetch_candle(from_dt, to_dt, tf)
-        #     print(candles)
+        if (self.date == None):
+            self.date = date
+        if (date!= self.date):
+            self.date= date
+            self.setup_for_next_day()
         
         if (not self.bool_setup and time >= self.setup_time ):
             # print("setting up once", t)
@@ -368,8 +357,9 @@ class DGLongShortOptBuy(Strategy):
         elif self.state != self.STATE_SQUAREDOFF and time>=self.liquidation_time:
             self.squareoff(t)
         elif time>= self.report_building_time:
-            # print(time)
-            self.build_eostrategy_report()
+            # comment this for daily eo strategy reports
+            if (date == (dt.datetime.strptime(self.end_date, "%Y%m%d")+ dt.timedelta(days=1)).date()):
+                self.build_eostrategy_report()
 
     # def round_time(t, minute=1):
     #     t = t.replace(second=0, microsecond=0)

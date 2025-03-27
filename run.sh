@@ -1,1 +1,1 @@
-python3 quantx/main.py "$1"
+python3 quantx/main.py

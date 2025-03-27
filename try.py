@@ -13,8 +13,11 @@ def get_all_options_nifty(file_path="quantx/prices/2025-02-17.csv", expiry_date 
     return df_filtered
 
 
-alloptions = get_all_options_nifty()
-print(alloptions)
+# alloptions = get_all_options_nifty()
+# print(alloptions)
+
+import math
+print(math.inf)
 
 # class Position:
 #     def __init__(self):

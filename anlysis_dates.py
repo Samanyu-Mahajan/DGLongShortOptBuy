@@ -113,7 +113,7 @@ else:
     max_drawdown = np.min(drawdowns)
 
                 # Equity Curve Plot
-# plot_equity_curve_and_drawdowns(pnl_list, equity_curve, drawdowns)
+plot_equity_curve_and_drawdowns(pnl_list, equity_curve, drawdowns)
 
 # Compute Win Loss Ratio
 total_trades = aggregated_data["Total trades"]

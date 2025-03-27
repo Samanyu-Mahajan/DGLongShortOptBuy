@@ -1,10 +1,15 @@
 ## Run code
 Add the data and prices folders
 ```
-./run.sh <date>
+./run.sh
 ```
-if <date> argument is given then this is the start and end date. If not given then it reads from config
-To run for all folders in data 
+OPTIONS = 0 for equity
+for nifty
+OPTIONS = 1
+specify start and end dates in config
+build one end of strategy report for all days but logs saved in start date.
+
+to run for all dates in data folder you need to modify main.py and run.sh appropriately and then call
 ```
 ./run_dates.sh
 ```

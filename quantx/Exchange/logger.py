@@ -36,10 +36,10 @@ def setup_logger(lock, name, log_file, log_formatter=formatter, level=logging.IN
 # general_logger = None
 
 
-def setup_stats_csv():
+def setup_stats_csv(start_date):
     global csv_file 
     # csv_file = f"{base_path_logger}/{START_DATE}/{update_time_gap_seconds}/stats.csv"
-    csv_file = f"{base_path_logger}/{START_DATE}/stats.csv"
+    csv_file = f"{base_path_logger}/{start_date}/stats.csv"
 
     if not os.path.exists(csv_file):
         with open(csv_file, mode='w', newline='') as file:

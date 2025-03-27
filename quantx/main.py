@@ -1,4 +1,4 @@
-from config import START_DATE, END_DATE, DATA_BUILDING_DATE, UNIVERSE, DATA_LOC, NUM_TOKENS, TIMER_TIME_SECONDS,CANDLE_TIME_FRAME, NIFTY_TOKEN, BASE_LOG_PATH #"quantx/logs"
+from config import START_DATE, END_DATE, DATA_BUILDING_DATE, UNIVERSE, DATA_LOC, NUM_TOKENS, TIMER_TIME_SECONDS,CANDLE_TIME_FRAME, NIFTY_TOKEN, OPTIONS, BASE_LOG_PATH #"quantx/logs"
 
 from Exchange.logger import setup_general_logger, setup_stats_csv
 from Exchange.executor import Exchange
@@ -37,7 +37,7 @@ class Infinity:
         # setup_general_logger(locks[0], start_date, update_time_gap_seconds)
         # setup_stats_csv(update_time_gap_seconds)
         setup_general_logger(locks[0], start_date)
-        setup_stats_csv()
+        setup_stats_csv(start_date)
         self.start_date = start_date
         self.end_date = end_date
         self.data_building_date = data_building_date
@@ -64,9 +64,6 @@ class Infinity:
             build_data=build_data, 
             all_data=all_data
         )
-        end = time.time()
-        # print(f"datastore: {self.universe}: {end-start}")
-        # self.locks = locks
         self.exchange = Exchange(locks, fill_type="ON_OPEN", log_name=self.start_date)
         # self.strategy = CWA2SSigma(locks, self.universe, self.exchange, "lakshya", self.start_date,
         #                       self.end_date, self.data_building_date)
@@ -76,11 +73,14 @@ class Infinity:
             "update_time_gap_seconds": update_time_gap_seconds,
             "candle_tf": CANDLE_TIME_FRAME
         }
-        # self.strategy = DGLongShortRev(locks, self.universe, self.exchange, "DGLongShortRev", self.start_date,
-        #                     self.end_date, self.data_building_date, data_obj=self.data_obj, params = params)
-        self.strategy = DGLongShortOptBuy(locks, self.universe, self.exchange, "DGLongShortOptBuy", self.start_date,
-                            self.end_date, self.data_building_date, data_obj=self.data_obj, underlying_data_obj = self.underlying_data_obj, 
-                            params = params)
+        if (OPTIONS):
+            self.strategy = DGLongShortOptBuy(locks, self.universe, self.exchange, "DGLongShortOptBuy", self.start_date,
+                    self.end_date, self.data_building_date, data_obj=self.data_obj, underlying_data_obj = self.underlying_data_obj, 
+                    params = params)
+        else:
+            self.strategy = DGLongShortRev(locks, self.universe, self.exchange, "DGLongShortRev", self.start_date,
+                            self.end_date, self.data_building_date, data_obj=self.data_obj, params = params)
+
         # so that upon order filling strategy is notified
         # stratgy updates self.position
         self.exchange.order_update_subscribers.append(self.strategy)
@@ -90,16 +90,10 @@ class Infinity:
     def run(self, update_time_gap_seconds):
 
         start_time = time.time()
-        
         cnt_packets = 0
         prev_t = None
-        first_packet=False
         while  self.data_obj.counter < self.data_obj.max_length:
-
-
             packet = self.data_obj.next()
-            
-
             cnt_packets+=1
             t = packet.timestamp_seconds
             if (prev_t is None):
@@ -107,13 +101,6 @@ class Infinity:
 
             if(packet.close==-0.01 or packet.open == -0.01 or packet.low==-0.01 or packet.high==-0.01):
                 continue
-            
-            # print("packet: ##################################################### ", cnt_packets+1)
-            # print(packet.open, packet.close)
-            # print(packet)
-            # if (cnt_packets > 10):
-            #     break
-            
             self.exchange.on_data(packet)
             self.strategy.on_data(packet)
             # if (t-prev_t>=dt.timedelta(seconds = update_time_gap_seconds)):
@@ -124,7 +111,7 @@ class Infinity:
 
 
 def run_sim(locks, start_date, end_date, data_building_date, universe, build_data, all_data, update_time_gap_seconds):
-    # print(f"START_DATE:{stardate}, END_DATE:{end_date}, DATA_BUILDING_DATE:{data_building_date}, UNIVERSE:{universe}")
+    # print(f"START_DATE:{start_date}, END_DATE:{end_date}, DATA_BUILDING_DATE:{data_building_date}, UNIVERSE:{universe}")
     runner_class = Infinity(locks, start_date, end_date, data_building_date, universe, build_data, all_data, update_time_gap_seconds)
     runner_class.run(update_time_gap_seconds)
     del runner_class
@@ -136,8 +123,8 @@ def delete_logs():
     dir = current_log_path
     os.system(f"rm -rf {dir}")  # delete existing log
     # os.mkdir(current_log_path)
-    os.makedirs(current_log_path, exist_ok=True)
-    # os.mkdir(dir)
+    # os.makedirs(current_log_path, exist_ok=True)
+    os.mkdir(dir)
 
 
 
@@ -165,30 +152,40 @@ def get_all_options_nifty(file_path="quantx/prices/2025-02-17.csv", expiry_date 
     return [int(x) for x in df_filtered["token"].tolist()]
 
 if __name__ == "__main__":
-        # by default read from cofig unless cmd line argument given
+        # by default read from config unless cmd line argument given
         start = time.time()
         if (len(sys.argv)>1):
             START_DATE = sys.argv[1]
             END_DATE=START_DATE
 
-        update_time_gap_seconds = TIMER_TIME_SECONDS
+    
 
-        UNIVERSE = get_all_options_nifty()
-        all_data = DataStore(
-            universe=UNIVERSE,
-            start_date=START_DATE,
-            end_date=END_DATE,
-            data_building_date=DATA_BUILDING_DATE,
-            data_path = DATA_LOC
-        )
-        # 35001,NIFTY27MAR25FUT
-        # nifty token is int
-        UNIVERSE.insert(0, NIFTY_TOKEN)
-
+        if (OPTIONS):
+            UNIVERSE = get_all_options_nifty()
+            all_data = DataStore(
+                universe=UNIVERSE,
+                start_date=START_DATE,
+                end_date=END_DATE,
+                data_building_date=DATA_BUILDING_DATE,
+                data_path = DATA_LOC
+            )
+            # 35001,NIFTY27MAR25FUT
+            # nifty token is int
+            UNIVERSE.insert(0, NIFTY_TOKEN)
+        else:
+            if (NUM_TOKENS):
+                UNIVERSE = get_universe(NUM_TOKENS)
+            all_data = DataStore(
+                universe=UNIVERSE,
+                start_date=START_DATE,
+                end_date=END_DATE,
+                data_building_date=DATA_BUILDING_DATE,
+                data_path = DATA_LOC
+            )
         # all_data.mkt_data.to_csv("mkt_data.csv", index=False)
-
-        # print(len(all_data.mkt_data))
         locks = []
+        processes = []
+
         # lock[0]-- general logger stdout
 
         # lock[1]: order.csv Exchange
@@ -200,12 +197,18 @@ if __name__ == "__main__":
             locks.append(Lock())
         delete_logs()
 
-        run_sim(locks, START_DATE, END_DATE, DATA_BUILDING_DATE, UNIVERSE, True, None, update_time_gap_seconds)
-            
+        if (OPTIONS):
+            run_sim(locks, START_DATE, END_DATE, DATA_BUILDING_DATE, UNIVERSE, True, None, TIMER_TIME_SECONDS)
+        else:
+            for u in UNIVERSE:
+                p = Process(target=run_sim, args = (locks, START_DATE, END_DATE, DATA_BUILDING_DATE, [u], False, all_data.mkt_data, TIMER_TIME_SECONDS))
+                p.start()
+                processes.append(p)
+
+            for p in processes:
+                p.join()
         end = time.time()
         print(f"main: {end-start} NUM_TOKENS:{NUM_TOKENS}")
-
-
 
 
 # packet

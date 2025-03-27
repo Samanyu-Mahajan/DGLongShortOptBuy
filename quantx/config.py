@@ -2,12 +2,14 @@ DATA_LOC = "quantx/data"
 BASE_LOG_PATH = "quantx/logs"
 
 START_DATE = "20250217"
-END_DATE = "20250217"
+END_DATE = "20250218"
 DATA_BUILDING_DATE = "20250203"
 # UNIVERSE = ["757"] # All tokens that need to be included
 # UNIVERSE = [163] # All tokens that need to be included
 # UNIVERSE = ["163", "526", "30108", "10794", "19585"]
+# UNIVERSE = [1270]
 UNIVERSE = [1270]
+# UNIVERSE =  [383]
 # ANOMALIES
 # UNIVERSE = [3010], ['3608']
 
@@ -34,6 +36,8 @@ TIMER_TIME_SECONDS = 60
 CANDLE_TIME_FRAME = 5
 NIFTY_TOKEN=35001
 REPORT_PATH = "quantx/report"
+# is option (nifty) or equities
+OPTIONS = 1
 
 
 # 163      [21915, orders]
